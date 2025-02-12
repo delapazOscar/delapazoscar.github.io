@@ -1,0 +1,111 @@
+body {
+    font-family: Helvetica;
+    font-size: 16px;
+    line-height: 1.9;
+    margin: 0;
+    padding-top: 80px;
+    width: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.app-bar{
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    background-image: none;
+    border: 0;
+    box-shadow: none;
+    font-size: inherit;
+    margin-bottom: 0;
+    min-height: 0;
+}
+
+.app-bar .main-nav{
+    float: left;
+}
+
+.app-bar .first-level {
+    display: inline-block;
+}
+
+.app-bar ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.app-bar .first-level li {
+    font-size: 16px;
+    display: inline-block;
+    margin: 0;
+}
+
+.app-bar li > a, .app-bar a:active, .app-bar a:focus, .app-bar a:hover {
+    text-decoration: none;
+}
+
+.app-bar .action-buttons{
+    float: right;
+    padding-right: .5em;
+}
+
+.first-level li a{
+    border-radius: 4px;
+    color: #4d5f69;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin: .7em 0;
+    padding: .55em;
+}
+
+.nav-logo a{
+    text-decoration: none;
+    color: #0078c6;
+}
+
+.nav-logo h1{
+    background: none;
+    border-bottom: 0;
+    font-size: 1.9em;
+    font-weight: normal;
+    line-height: 1.1em;
+    margin: 0 auto;
+    color: #093a41;
+    clear: both;
+    padding: 0;
+}
+
+.nav-logo{
+    background: url(/src/wl-logo.png) 0% 50% no-repeat;
+    background-size: 1.4em;
+    display: inline-block;
+    float: left;
+    letter-spacing: 0;
+    margin-left: .5em;
+    padding: .9em 1.8em;
+}
+
+.button{
+    border-color: #00000000;
+    border-radius: 4px;
+    font-size: 1em;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin: .7em 0;
+    padding: .55em;
+}
+
+.bg-color-gray{
+    background-color: #5c727d;
+}
+
+.bg-color-red{
+    background-color: #e5332a;
+}
+
+.white{
+    color: #fff;
+}
