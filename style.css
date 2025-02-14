@@ -225,3 +225,7 @@ body {
 .gap-3{
     gap: 3rem;
 }
+
+.bg-red{
+    background-color: #757575 !important;
+}
