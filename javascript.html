@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WikiLeaks</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <h1>Hello world JavaScript</h1>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async function() {
+            let x = 10;
+
+            let object = { autor: "Oscar", titulo: "Juan Rulfo" };
+            console.log(`El autor es ${object.autor} y el título es ${object.titulo}`);
+
+            let h1 = document.getElementsByTagName("h1");
+            console.log(h1);
+
+            let h2 = document.createElement("h1");
+            h2.innerHTML = "Da clic aquí";
+            h2.style.color = "red";
+            h2.style.cursor = "pointer";
+            h2.addEventListener("click", function() {
+                console.log("Haz dado clic al texto");
+                alert("Haz dado clic al texto");
+            });
+            document.body.appendChild(h2);
+
+            async function veAlMuseo(){
+                try {
+                    let respuesta = await fetch("https://collectionapi.metmuseum.org/public/collection/v1/objects/40");
+                    let datos = await respuesta.json();
+                    
+                    console.log("Datos recibidos del museo:", datos); // ✅ Muestra el JSON completo
+                    return datos;  
+                } catch (error) {
+                    console.error("Error al obtener datos del museo:", error);
+                    return null;  
+                }
+            }
+
+            let museo = await veAlMuseo(); 
+            let p = document.createElement("p");
+            // Verificar si la propiedad artistAlphaSort existe antes de imprimir el warning
+            if (museo && typeof museo.artistAlphaSort !== "undefined") {  
+                
+                p.innerHTML = `Artista: ${museo.artistAlphaSort}`;
+                p.style.color = "blue";
+                
+            } else {
+                console.warn("No se encontró la propiedad artistAlphaSort en los datos recibidos.");
+                p.innerHTML = `No se encontró la propiedad artistAlhaSort`;
+                p.style.color = "red";
+            }
+            document.body.appendChild(p);
+            
+            let image = document.createElement("img");
+            image.style.width = "100px";
+            image.src = museo.primaryImage;
+            document.body.appendChild(image);
+
+            client_id = "8bd6121451d94a0682317250b782e6f8";
+            client_secret = "17e1f64f9ca14c66812c3c01e96738c0";
+
+            async function getAccessToken() {
+                try {
+                    let response = await fetch("https://accounts.spotify.com/api/token", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                            "Authorization": "Basic " + btoa(client_id + ":" + client_secret)
+                        },
+                        body: "grant_type=client_credentials"
+                    });
+                    let data = await response.json();
+                    console.log("Token de acceso:", data);
+                    return data.access_token;
+                } catch (error) {
+                    console.error("Error al obtener el token de acceso:", error);
+                    return null;
+                }
+                
+            }
+
+            token = await getAccessToken();
+
+            async function requestArtistData() {
+                try{
+                    let response = await fetch("https://api.spotify.com/v1/artists/4Z8W4fKeB5YxbusRsdQVPb", {
+                        headers: {
+                            'Authorization': 'Bearer ' + token
+                        }
+                    })
+                    console.log("Respuesta de la API de Spotify:", response);
+                    let data = await response.json();
+                    console.log("Datos del artista:", data);
+                    return data;
+                }catch(error){
+                    console.error("Error al obtener datos del artista:", error);
+                    return null;
+                }
+            }
+
+            artistData = await requestArtistData();
+            let artistName = document.createElement("p");
+            artistName.innerHTML = `Nombre del artista: ${artistData.name}`;
+            artistName.style.color = "green";
+            document.body.appendChild(artistName);
+
+            let artistImage = document.createElement("img");
+            artistImage.style.width = "100px";
+            artistImage.src = artistData.images[0].url;
+            document.body.appendChild(artistImage);
+
+        });
+    </script>
+
+</body>
+</html>
